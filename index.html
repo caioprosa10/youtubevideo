@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YouTube Videos — W04 Assignment</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>YouTube Video Program — Week 04</h1>
+    <p>Abstraction Demo (C# → visualização em HTML)</p>
+  </header>
+
+  <main id="videosContainer">
+    <!-- Se quiser tudo estático, copie o bloco abaixo e repita:
+
+    <article class="video-card">
+      <h2 class="video-title">Encapsulation in C#</h2>
+      <p class="video-meta">
+        <span class="author">Autor: TechAcademy</span> •
+        <span class="length">Duração: 420s</span> •
+        <span class="comments-count">Comentários: 3</span>
+      </p>
+      <ul class="comments">
+        <li><strong>Alice:</strong> Great explanation, thanks!</li>
+        <li><strong>Bob:</strong> Could you talk about inheritance next?</li>
+        <li><strong>Carlos:</strong> Muito bom, aprendi bastante.</li>
+      </ul>
+    </article>
+
+    FIM DO BLOCO ESTÁTICO -->
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 — Caio Palladino Da Rosa</p>
+  </footer>
+
+  <!-- Pequeno JS opcional para você só alterar o array -->
+  <script>
+    // Edite aqui para evitar mexer no HTML direto
+    const videos = [
+      {
+        title: "Encapsulation in C#",
+        author: "TechAcademy",
+        lengthSeconds: 420,
+        comments: [
+          { author: "Alice", text: "Great explanation, thanks!" },
+          { author: "Bob", text: "Could you talk about inheritance next?" },
+          { author: "Carlos", text: "Muito bom, aprendi bastante." }
+        ]
+      },
+      {
+        title: "BYU-I Pathway Tips",
+        author: "Caio Mentor",
+        lengthSeconds: 315,
+        comments: [
+          { author: "Julia", text: "Essas dicas salvaram meu bloco!" },
+          { author: "Diego", text: "Como faço para mudar de gathering?" },
+          { author: "Marcos", text: "Obrigado, vídeo top!" },
+          { author: "Lana", text: "Fala também sobre bolsas, por favor." }
+        ]
+      },
+      {
+        title: "Top 5 Patterns in OOP",
+        author: "CodeMaster",
+        lengthSeconds: 600,
+        comments: [
+          { author: "Zara", text: "Adapter pattern é o meu favorito!" },
+          { author: "Nate", text: "Please include examples in Java too." },
+          { author: "Rafa", text: "Muito claro, parabéns!" }
+        ]
+      },
+      {
+        title: "LINQ Basics",
+        author: "Dotnet Devs",
+        lengthSeconds: 255,
+        comments: [
+          { author: "Eve", text: "LINQ makes life easier!" },
+          { author: "Tom", text: "Where can I find more exercises?" },
+          { author: "Ana", text: "Excelente conteúdo, obrigada!" }
+        ]
+      }
+    ];
+
+    // Renderização
+    const container = document.getElementById("videosContainer");
+    videos.forEach(v => {
+      const card = document.createElement("article");
+      card.className = "video-card";
+
+      card.innerHTML = `
+        <h2 class="video-title">${escapeHtml(v.title)}</h2>
+        <p class="video-meta">
+          <span class="author">Autor: ${escapeHtml(v.author)}</span> •
+          <span class="length">Duração: ${v.lengthSeconds}s</span> •
+          <span class="comments-count">Comentários: ${v.comments.length}</span>
+        </p>
+        <ul class="comments">
+          ${v.comments.map(c => `<li><strong>${escapeHtml(c.author)}:</strong> ${escapeHtml(c.text)}</li>`).join("")}
+        </ul>
+      `;
+
+      container.appendChild(card);
+    });
+
+    function escapeHtml(str){
+      return str
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+    }
+  </script>
+</body>
+</html>
